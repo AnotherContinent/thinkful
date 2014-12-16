@@ -1,33 +1,38 @@
-from Bike_shop import Bicycle, Bike_shop, Customer
+from Bike_shop import Bicycle, Bike_shop, Customer, Wheel, Frame
 if __name__ == '__main__':
-  Bike_One = Bicycle("Caprica", 10, 200)
-  Bike_Two = Bicycle("Tauron", 40, 75)
-  Bike_Three = Bicycle("Aerilon", 20, 500)
-  Bike_Four = Bicycle("Geminon",30, 750)
-  Bike_Five = Bicycle("Sagitarron", 25, 300)
-  Bike_Six = Bicycle("Picon", 15, 100)
   
-  Customer_One = ("Lee", 200)
-  Customer_Two = ("Kara", 500)
-  Customer_Three = ("Laura", 1000)
+  Wheel_One = Wheel(5, 10, "Wimpy")
+  Wheel_Two = Wheel(7, 15, "Iggy")
+  Wheel_Three = Wheel(10, 20, "Nzinga")
   
-  inventory = [Bike_One, Bike_Two, Bike_Three, Bike_Four, Bike_Five, Bike_Six]
+  Frame_One = Frame(15, 30, "Little Boy")
+  Frame_Two = Frame(20, 45, "Trinity")
+  Frame_Three = Frame(25, 50, "Fat Man")
+ 
+  inventory = {
+    Bike_One = Bicycle("Caprica", Wheel_One, Wheel_Three, Frame_Three)
+    Bike_Two = Bicycle("Tauron", Wheel_Two, Wheel_Two, Frame_Two)
+    Bike_Three = Bicycle("Aerilon", Wheel_Three, Wheel_Three, Frame_Three)
+    Bike_Four = Bicycle("Geminon",Wheel_One, Wheel_One, Frame_One)
+    Bike_Five = Bicycle("Sagitarron", Wheel_Two, Wheel_Three, Frame_Two)
+    Bike_Six = Bicycle("Picon", Wheel_One, Wheel_Two, Frame_One)
+    }
   
-  customers = [Customer_One,Customer_Two,Customer_Three]
+customer = {
+  Customer_One = Customer("Lee", 200)
+  Customer_Two = Customer("Kara", 500)
+  Customer_Three = Customer("Laura", 1000)
+} 
+
   
-  Bike_shop = ("Galactica Bikes", inventory)
+Bike_shop = ("Galactica Bikes", inventory)
   
-  print()
+print inventory
   
-for bike in range(len(inventory)):
-    print inventory[bike]
-  
-  
-for customer in range(len(customers)):
-    print customers[customer]
+print customers
     
-for customer in range(len(customers)):
+for Customer in range(len(customers)):
   for bike in range(len(inventory)):
-    if inventory[bike].cost * .2 <= customers[customer].budget:
-      print "{0} can afford the following bikes: {1}".format(customers[customer].name, inventory[bike].model)
+    if getattr(Bicycle, 'retail_price') <= Customer.budget:
+      print "{} can afford the following bikes: \n{}".format(customers.name, inventory.name)
     
