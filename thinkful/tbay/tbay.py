@@ -42,8 +42,8 @@ if __name__ == "__main__":
   session.commit()
   
   meth = Item(name="meth", description = "drugs")
-  kif = Item(name="kif", description = "drugs")
+  pot = Item(name="kif", description = "drugs")
   session.add(meth, kif)
   session.commit()
   
-  session.query(User).all()
+  
