@@ -10,18 +10,18 @@ if __name__ == '__main__':
   Frame_Three = Frame(25, 50, "Fat Man")
  
   inventory = {
-    Bike_One = Bicycle("Caprica", Wheel_One, Wheel_Three, Frame_Three)
-    Bike_Two = Bicycle("Tauron", Wheel_Two, Wheel_Two, Frame_Two)
-    Bike_Three = Bicycle("Aerilon", Wheel_Three, Wheel_Three, Frame_Three)
-    Bike_Four = Bicycle("Geminon",Wheel_One, Wheel_One, Frame_One)
-    Bike_Five = Bicycle("Sagitarron", Wheel_Two, Wheel_Three, Frame_Two)
-    Bike_Six = Bicycle("Picon", Wheel_One, Wheel_Two, Frame_One)
+    "bike_one" : Bicycle("Caprica", Wheel_One, Wheel_Three, Frame_Three),
+    "bike_two" : Bicycle("Tauron", Wheel_Two, Wheel_Two, Frame_Two),
+    "bike_three" : Bicycle("Aerilon", Wheel_Three, Wheel_Three, Frame_Three),
+    "bike_four" : Bicycle("Geminon",Wheel_One, Wheel_One, Frame_One),
+    "bike_five" : Bicycle("Sagitarron", Wheel_Two, Wheel_Three, Frame_Two),
+    "bike_six" : Bicycle("Picon", Wheel_One, Wheel_Two, Frame_One)
     }
   
-customer = {
-  Customer_One = Customer("Lee", 200)
-  Customer_Two = Customer("Kara", 500)
-  Customer_Three = Customer("Laura", 1000)
+customers = {
+  "customer_one" : Customer("Lee", 200),
+  "customer_two" : Customer("Kara", 500),
+  "customer_three" : Customer("Laura", 1000)
 } 
 
   
@@ -31,8 +31,12 @@ print inventory
   
 print customers
     
-for Customer in range(len(customers)):
-  for bike in range(len(inventory)):
-    if getattr(Bicycle, 'retail_price') <= Customer.budget:
-      print "{} can afford the following bikes: \n{}".format(customers.name, inventory.name)
+for customername in customers:
+  customer = customers[customername]
+
+  for key in inventory:
+      bike = inventory[key]
+      if bike.cost() < customer.budget:
+         print "{} can afford the following bikes: \n{}".format(customer.name, inventory.name)
+      #print customer.name, bike.name, customer.budget, bike.cost()
     
