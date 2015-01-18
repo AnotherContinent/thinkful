@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>
+    Edit Post
+</h1>
+<form role="form" method="POST">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <textarea type="text" class="form-control" id="title" name="title" required> {{title|safe}} </textarea>
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea type ="text" class="form-control" id="content" name="content" rows="20" required>{{content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+<a href="{{url_for('delete_post', postid=post.id)}}" onclick="return confirm('Do you want to delete this post?')">Delete</a>
+
+</form>
+{% endblock %}

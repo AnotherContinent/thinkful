@@ -64,6 +64,28 @@ def add_post_post():
     session.add(post)
     session.commit()
     return redirect(url_for("posts"))
+  
+@app.route("/post/<postid>/edit", methods=["GET"])
+def edit_post_get(postid):
+    post = session.query(Post).filter(Post.id==postid).first()
+    title = post.title
+    content = post.content
+    return render_template("edit_post.html", title=title,
+    content=content, post=post)
+  
+@app.route("/post/<postid>/edit", methods=["POST"])
+def edit_post_post(postid):
+    post = session.query(Post).filter(Post.id==postid).first()
+    post.title = request.form["title"]
+    post.content = mistune.markdown(request.form["content"])
+    session.commit()
+    return redirect(url_for("posts"))
+
+@app.route("/post/<postid>/delete", methods=["GET"])
+def delete_post(postid):
+    session.query(Post).filter_by(Post.id==postid).delete()
+    session.commit()
+    return redirect(url_for("posts"))
 
 @app.route("/login", methods=["GET"])
 def login_get():
